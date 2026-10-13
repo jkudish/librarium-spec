@@ -199,8 +199,14 @@ Every non-dry-run request creates the Run in the store before any provider
 call. Waiting is a client choice, not a request field. One Run never mixes
 depths, so there is no mode.
 
-- **quick** results run inline in the calling process.
-- **deep** results are durable provider tasks. Their signed handles are saved
+- Depth only chooses variants. Whether a result runs inline or as a durable
+  task is a property of its variant or collector, not of the depth.
+- **quick** results usually run inline in the calling process. A quick
+  variant or engine collector that is a durable provider task (Firecrawl
+  `agent` mode, DataForSEO standard-priority tasks) is submitted durably like
+  a deep source: its signed handle goes into Run state and
+  `run()` / `queue()` / `refresh()` / `show` / `get_run` finish it.
+- **deep** results are always durable provider tasks. Their signed handles are saved
   in the Run's private state, so any later `show` / `get` / `find()->refresh()`
   can observe and finish them. Every deep variant must be durable in both
   languages (PHP must add recoverable handles for OpenAI and You.com research).
