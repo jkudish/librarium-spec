@@ -154,6 +154,11 @@
           }
         }
       }
+    },
+    "summary_of": {
+      "type": "string",
+      "pattern": "^run_[0-9A-HJKMNP-TV-Z]{26}$",
+      "description": "Present only on a Run produced by summarize: the id of the Run it summarizes."
     }
   },
   "$defs": {

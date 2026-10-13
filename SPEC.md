@@ -317,6 +317,18 @@ librarium setup [--check] [--live]                      # keys, options, default
 librarium mcp
 ```
 
+`summarize` (JS only) synthesizes one cited answer from a stored Run:
+
+- The synthesis source is `summarize.source` in config (set by `setup`), or
+  `--source <name>`. If neither is set, the first set-up source in this fixed
+  order: `openai`, `claude`, `gemini`, `openrouter`. If none is set up, it
+  fails with `no_summarize_source`. A failed call fails; there is no cascade.
+- `--verify` makes its verification call with the same source.
+- The paid synthesis (and verification) is tracked as its own Run: one result
+  from the synthesis source holding the summary Markdown and its citations,
+  with `summary_of` set to the source Run's id. The source Run is unchanged.
+- `max_cost` applies to the summary Run like any other.
+
 Kept tools: `browse`, `html`, `jsonl`, `usage`, `cleanup`, `config`,
 `completions`, `upgrade`, `install-skill`. `--json` prints the Run.
 
