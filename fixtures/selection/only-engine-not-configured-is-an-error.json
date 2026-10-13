@@ -1,0 +1,26 @@
+{
+  "description": "Naming an engine when no engine collector is set up fails.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": false
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "only": [
+      "chatgpt"
+    ]
+  },
+  "expected": {
+    "error": "not_configured",
+    "name": "chatgpt"
+  }
+}

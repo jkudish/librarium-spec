@@ -1,0 +1,30 @@
+{
+  "description": "Engines run when named.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "only": [
+      "chatgpt",
+      "copilot"
+    ]
+  },
+  "expected": {
+    "selected": [
+      "chatgpt",
+      "copilot"
+    ],
+    "skipped": []
+  }
+}

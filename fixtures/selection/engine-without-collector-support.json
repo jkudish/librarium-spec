@@ -1,0 +1,34 @@
+{
+  "description": "An engine the configured collector cannot collect is skipped with no_collector.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "dataforseo",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "only": [
+      "chatgpt",
+      "copilot"
+    ]
+  },
+  "expected": {
+    "selected": [
+      "chatgpt"
+    ],
+    "skipped": [
+      {
+        "source": "copilot",
+        "reason": "no_collector"
+      }
+    ]
+  }
+}

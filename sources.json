@@ -1,0 +1,658 @@
+{
+  "$schema": "./schema/sources.schema.json",
+  "spec": "librarium.sources/1",
+  "notes": "Order is catalog order (used by the budget rule). 'js' and 'php' are the legacy profile ids each variant replaces; null means not available in that language today. Pricing stays in each package (JS pricing snapshot, PHP laravel-ai-pricing).",
+  "sources": [
+    {
+      "id": "brave",
+      "name": "Brave",
+      "kind": "research",
+      "docs": "https://brave.com/search/api/",
+      "variants": {
+        "quick": {
+          "js": "brave-answers/grounded",
+          "php": "brave-answers",
+          "env": "BRAVE_ANSWERS_API_KEY"
+        }
+      },
+      "options": {
+        "results": {
+          "default": "answer",
+          "values": [
+            "answer",
+            "search"
+          ],
+          "variants": {
+            "search": {
+              "js": "brave-search/search",
+              "php": "brave-search",
+              "env": "BRAVE_API_KEY"
+            }
+          }
+        }
+      },
+      "php_credential": "services.brave.key"
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "kind": "research",
+      "docs": "https://docs.anthropic.com/",
+      "variants": {
+        "quick": {
+          "js": "claude/chat",
+          "php": "claude-chat",
+          "env": "ANTHROPIC_API_KEY"
+        }
+      },
+      "options": {
+        "model": {
+          "type": "string"
+        }
+      },
+      "php_credential": "ai.providers.anthropic.key"
+    },
+    {
+      "id": "exa",
+      "name": "Exa",
+      "kind": "research",
+      "docs": "https://docs.exa.ai/",
+      "variants": {
+        "quick": {
+          "js": "exa/search",
+          "php": "exa",
+          "env": "EXA_API_KEY"
+        },
+        "deep": {
+          "js": "exa/research",
+          "php": "exa-research",
+          "env": "EXA_API_KEY"
+        }
+      },
+      "options": {},
+      "php_credential": "services.exa.key"
+    },
+    {
+      "id": "firecrawl",
+      "name": "Firecrawl",
+      "kind": "research",
+      "docs": "https://docs.firecrawl.dev/",
+      "variants": {
+        "quick": {
+          "js": "firecrawl-search/search",
+          "php": null,
+          "env": "FIRECRAWL_API_KEY",
+          "php_status": "new: built-in firecrawl source replaces the adapter's firecrawl-search profile"
+        }
+      },
+      "options": {
+        "sources": {
+          "type": "array",
+          "items": [
+            "web",
+            "news"
+          ]
+        },
+        "limit": {
+          "type": "integer"
+        }
+      },
+      "php_credential": "services.firecrawl.key"
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "kind": "research",
+      "docs": "https://ai.google.dev/gemini-api/docs",
+      "variants": {
+        "quick": {
+          "js": "gemini-grounded/grounded",
+          "php": "gemini-grounded",
+          "env": "GEMINI_API_KEY"
+        },
+        "deep": {
+          "js": "gemini-deep/research",
+          "php": "gemini-deep-research",
+          "env": "GEMINI_API_KEY"
+        }
+      },
+      "options": {
+        "quick": {
+          "default": "grounded",
+          "values": [
+            "grounded",
+            "chat"
+          ],
+          "variants": {
+            "chat": {
+              "js": "gemini-chat/chat",
+              "php": "gemini-chat",
+              "env": "GEMINI_API_KEY"
+            }
+          }
+        }
+      },
+      "php_credential": "ai.providers.gemini.key"
+    },
+    {
+      "id": "google",
+      "name": "Google results",
+      "kind": "research",
+      "docs": "https://librarium.agentsy.build/docs/providers",
+      "variants": {
+        "quick": {
+          "js": "searchapi/search",
+          "php": "searchapi",
+          "env": "SEARCHAPI_API_KEY"
+        }
+      },
+      "options": {
+        "collector": {
+          "default": "searchapi",
+          "values": [
+            "searchapi",
+            "serpapi",
+            "serpbase"
+          ],
+          "variants": {
+            "serpapi": {
+              "js": "serpapi/search",
+              "php": "serpapi",
+              "env": "SERPAPI_API_KEY"
+            },
+            "serpbase": {
+              "js": "serpbase/search",
+              "php": "serpbase-search",
+              "env": "SERPBASE_API_KEY"
+            }
+          }
+        },
+        "vertical": {
+          "default": "web",
+          "values": [
+            "web",
+            "news"
+          ],
+          "variants": {
+            "news": {
+              "js": "serpbase/news",
+              "php": "serpbase-news",
+              "env": "SERPBASE_API_KEY",
+              "requires": {
+                "collector": "serpbase"
+              }
+            }
+          }
+        }
+      },
+      "php_credential": "services.<collector>.key",
+      "notes": "Credential follows the collector."
+    },
+    {
+      "id": "grok",
+      "name": "Grok",
+      "kind": "research",
+      "docs": "https://docs.x.ai/",
+      "variants": {
+        "quick": {
+          "js": "grok/web",
+          "php": "grok",
+          "env": "XAI_API_KEY"
+        }
+      },
+      "options": {
+        "search": {
+          "default": "web",
+          "values": [
+            "web",
+            "x",
+            "both"
+          ],
+          "variants": {
+            "x": {
+              "js": "grok-x-only/x",
+              "php": "grok-x-only",
+              "env": "XAI_API_KEY"
+            },
+            "both": {
+              "js": "grok-combined/combined",
+              "php": "grok-combined",
+              "env": "XAI_API_KEY"
+            }
+          }
+        }
+      },
+      "php_credential": "ai.providers.xai.key"
+    },
+    {
+      "id": "jina",
+      "name": "Jina",
+      "kind": "research",
+      "docs": "https://jina.ai/",
+      "variants": {
+        "quick": {
+          "js": "jina-search/search",
+          "php": "jina-search",
+          "env": "JINA_AI_API_KEY"
+        }
+      },
+      "options": {},
+      "php_credential": "services.jina.key"
+    },
+    {
+      "id": "kagi",
+      "name": "Kagi",
+      "kind": "research",
+      "docs": "https://help.kagi.com/kagi/api/fastgpt.html",
+      "variants": {
+        "quick": {
+          "js": "kagi-fastgpt/grounded",
+          "php": "kagi-fastgpt",
+          "env": "KAGI_API_KEY"
+        }
+      },
+      "options": {},
+      "php_credential": "services.kagi.key"
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "kind": "research",
+      "docs": "https://platform.openai.com/docs",
+      "variants": {
+        "quick": {
+          "js": "openai-chat/chat",
+          "php": "openai-chat",
+          "env": "OPENAI_API_KEY"
+        },
+        "deep": {
+          "js": "openai-research/research",
+          "php": "openai-research",
+          "env": "OPENAI_API_KEY",
+          "php_status": "needs a recoverable handle (W3)"
+        }
+      },
+      "options": {
+        "model": {
+          "type": "string"
+        },
+        "effort": {
+          "type": "string"
+        }
+      },
+      "php_credential": "ai.providers.openai.key"
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "kind": "research",
+      "docs": "https://openrouter.ai/docs",
+      "variants": {
+        "quick": {
+          "js": "openrouter/grounded",
+          "php": "openrouter-grounded",
+          "env": "OPENROUTER_API_KEY"
+        }
+      },
+      "options": {
+        "quick": {
+          "default": "grounded",
+          "values": [
+            "grounded",
+            "chat"
+          ],
+          "variants": {
+            "chat": {
+              "js": "openrouter/chat",
+              "php": "openrouter-chat",
+              "env": "OPENROUTER_API_KEY"
+            }
+          }
+        },
+        "model": {
+          "type": "string"
+        }
+      },
+      "php_credential": "ai.providers.openrouter.key"
+    },
+    {
+      "id": "parallel",
+      "name": "Parallel",
+      "kind": "research",
+      "docs": "https://docs.parallel.ai/",
+      "variants": {
+        "quick": {
+          "js": "parallel/turbo",
+          "php": "parallel-turbo",
+          "env": "PARALLEL_API_KEY"
+        },
+        "deep": {
+          "js": "parallel/research",
+          "php": "parallel-research",
+          "env": "PARALLEL_API_KEY"
+        }
+      },
+      "options": {
+        "quick": {
+          "default": "turbo",
+          "values": [
+            "turbo",
+            "search"
+          ],
+          "variants": {
+            "search": {
+              "js": "parallel/search",
+              "php": "parallel-search",
+              "env": "PARALLEL_API_KEY"
+            }
+          }
+        },
+        "processor": {
+          "type": "string",
+          "default": "pro",
+          "values": [
+            "lite",
+            "base",
+            "core",
+            "core2x",
+            "pro",
+            "ultra",
+            "ultra2x",
+            "ultra4x",
+            "ultra8x"
+          ]
+        }
+      },
+      "php_credential": "services.parallel.key"
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "kind": "research",
+      "docs": "https://docs.perplexity.ai/",
+      "variants": {
+        "quick": {
+          "js": "perplexity-sonar-pro/grounded",
+          "php": "perplexity-sonar-pro",
+          "env": "PERPLEXITY_API_KEY"
+        },
+        "deep": {
+          "js": "perplexity-deep-research/research",
+          "php": "perplexity-deep-research",
+          "env": "PERPLEXITY_API_KEY"
+        }
+      },
+      "options": {
+        "quick": {
+          "default": "sonar-pro",
+          "values": [
+            "sonar-pro",
+            "search",
+            "agent"
+          ],
+          "variants": {
+            "search": {
+              "js": "perplexity-search/search",
+              "php": "perplexity-search",
+              "env": "PERPLEXITY_API_KEY"
+            },
+            "agent": {
+              "js": null,
+              "php": "perplexity-low-frozen",
+              "env": "PERPLEXITY_API_KEY"
+            }
+          }
+        },
+        "deep_effort": {
+          "default": "medium",
+          "values": [
+            "medium",
+            "high"
+          ],
+          "variants": {
+            "high": {
+              "js": "perplexity-sonar-deep/research",
+              "php": "perplexity-sonar-deep",
+              "env": "PERPLEXITY_API_KEY"
+            }
+          }
+        }
+      },
+      "php_credential": "services.perplexity.key"
+    },
+    {
+      "id": "tavily",
+      "name": "Tavily",
+      "kind": "research",
+      "docs": "https://docs.tavily.com/",
+      "variants": {
+        "quick": {
+          "js": "tavily/search",
+          "php": "tavily-search",
+          "env": "TAVILY_API_KEY"
+        }
+      },
+      "options": {},
+      "php_credential": "services.tavily.key"
+    },
+    {
+      "id": "valyu",
+      "name": "Valyu",
+      "kind": "research",
+      "docs": "https://docs.valyu.ai/",
+      "variants": {
+        "quick": {
+          "js": "valyu/search",
+          "php": "valyu-search",
+          "env": "VALYU_API_KEY"
+        },
+        "deep": {
+          "js": "valyu/research",
+          "php": "valyu-research",
+          "env": "VALYU_API_KEY"
+        }
+      },
+      "options": {
+        "mode": {
+          "type": "string",
+          "default": "standard",
+          "values": [
+            "fast",
+            "standard",
+            "heavy",
+            "max"
+          ]
+        },
+        "output": {
+          "type": "array",
+          "default": [
+            "markdown",
+            "pdf"
+          ]
+        }
+      },
+      "php_credential": "services.valyu.key"
+    },
+    {
+      "id": "you",
+      "name": "You.com",
+      "kind": "research",
+      "docs": "https://documentation.you.com/",
+      "variants": {
+        "quick": {
+          "js": "you-answer/grounded",
+          "php": "you-answer",
+          "env": "YOU_COM_API_KEY"
+        },
+        "deep": {
+          "js": "you-research/research",
+          "php": "you-research-research",
+          "env": "YOU_COM_API_KEY",
+          "php_status": "needs a recoverable handle (W3)"
+        }
+      },
+      "options": {
+        "quick": {
+          "default": "answer",
+          "values": [
+            "answer",
+            "research"
+          ],
+          "variants": {
+            "research": {
+              "js": "you-research/grounded",
+              "php": "you-research-grounded",
+              "env": "YOU_COM_API_KEY"
+            }
+          }
+        }
+      },
+      "php_credential": "services.you.key"
+    }
+  ],
+  "engines": [
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "kind": "engine",
+      "observation": "surface",
+      "collectors": {
+        "searchapi": {
+          "js": "searchapi-chatgpt/surface",
+          "php": "searchapi-chatgpt",
+          "env": "SEARCHAPI_API_KEY"
+        },
+        "dataforseo": {
+          "js": null,
+          "php": "dataforseo-chatgpt",
+          "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
+          "options": {
+            "priority": {
+              "default": "standard",
+              "values": [
+                "standard",
+                "live"
+              ],
+              "php_live": "dataforseo-chatgpt-live"
+            }
+          }
+        },
+        "firecrawl": {
+          "js": null,
+          "php": "laravel-ai-librarium-firecrawl",
+          "env": "FIRECRAWL_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "gemini-app",
+      "name": "Gemini app",
+      "kind": "engine",
+      "observation": "surface",
+      "collectors": {
+        "searchapi": {
+          "js": "searchapi-gemini/surface",
+          "php": "searchapi-gemini",
+          "env": "SEARCHAPI_API_KEY"
+        },
+        "dataforseo": {
+          "js": null,
+          "php": "dataforseo-gemini",
+          "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
+          "options": {
+            "priority": {
+              "default": "standard",
+              "values": [
+                "standard",
+                "live"
+              ],
+              "php_live": "dataforseo-gemini-live"
+            }
+          }
+        },
+        "firecrawl": {
+          "js": null,
+          "php": "laravel-ai-librarium-firecrawl",
+          "env": "FIRECRAWL_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "google-ai-mode",
+      "name": "Google AI Mode",
+      "kind": "engine",
+      "observation": "surface",
+      "collectors": {
+        "searchapi": {
+          "js": "searchapi-google-ai-mode/surface",
+          "php": "searchapi-google-ai-mode",
+          "env": "SEARCHAPI_API_KEY"
+        },
+        "dataforseo": {
+          "js": null,
+          "php": "dataforseo-google-ai-mode",
+          "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
+          "options": {
+            "priority": {
+              "default": "standard",
+              "values": [
+                "standard",
+                "live"
+              ],
+              "php_live": "dataforseo-google-ai-mode-live"
+            }
+          }
+        },
+        "firecrawl": {
+          "js": null,
+          "php": "laravel-ai-librarium-firecrawl",
+          "env": "FIRECRAWL_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "google-ai-overview",
+      "name": "Google AI Overview",
+      "kind": "engine",
+      "observation": "surface",
+      "collectors": {
+        "searchapi": {
+          "js": "searchapi-google-ai-overview/surface",
+          "php": "searchapi-google-ai-overview",
+          "env": "SEARCHAPI_API_KEY"
+        },
+        "firecrawl": {
+          "js": null,
+          "php": "laravel-ai-librarium-firecrawl",
+          "env": "FIRECRAWL_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "copilot",
+      "name": "Microsoft Copilot",
+      "kind": "engine",
+      "observation": "surface",
+      "collectors": {
+        "searchapi": {
+          "js": "searchapi-bing-copilot/surface",
+          "php": "searchapi-bing-copilot",
+          "env": "SEARCHAPI_API_KEY"
+        },
+        "firecrawl": {
+          "js": null,
+          "php": "laravel-ai-librarium-firecrawl",
+          "env": "FIRECRAWL_API_KEY"
+        }
+      }
+    }
+  ],
+  "skip_reasons": [
+    "not_configured",
+    "no_deep_variant",
+    "unpriced",
+    "over_budget",
+    "excluded",
+    "no_collector"
+  ]
+}

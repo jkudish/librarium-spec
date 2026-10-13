@@ -1,0 +1,27 @@
+{
+  "description": "With no `only`, a Run asks every set-up research source in catalog order and never engines.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q"
+  },
+  "expected": {
+    "selected": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "skipped": []
+  }
+}

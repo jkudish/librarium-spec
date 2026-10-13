@@ -1,0 +1,27 @@
+{
+  "description": "Naming a source that is not set up fails instead of silently skipping.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "only": [
+      "exa",
+      "openai"
+    ]
+  },
+  "expected": {
+    "error": "not_configured",
+    "name": "openai"
+  }
+}

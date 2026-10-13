@@ -1,0 +1,23 @@
+{
+  "spec": "librarium.run/1",
+  "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+  "question": "Replacing GA4 for an EU SaaS: compare Plausible, Fathom, and Matomo",
+  "depth": "deep",
+  "status": "planned",
+  "created_at": "2026-10-12T18:04:11Z",
+  "finished_at": null,
+  "cost": {
+    "estimated": "0.40",
+    "reported": null,
+    "complete": false,
+    "max": "0.50"
+  },
+  "results": [],
+  "skipped": [
+    {
+      "source": "exa",
+      "reason": "unpriced"
+    }
+  ],
+  "notices": []
+}

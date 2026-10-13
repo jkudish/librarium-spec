@@ -1,0 +1,35 @@
+{
+  "description": "Engines have no deep variant.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "depth": "deep",
+    "only": [
+      "exa",
+      "chatgpt"
+    ]
+  },
+  "expected": {
+    "selected": [
+      "exa"
+    ],
+    "skipped": [
+      {
+        "source": "chatgpt",
+        "reason": "no_deep_variant"
+      }
+    ]
+  }
+}

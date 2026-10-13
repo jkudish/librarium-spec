@@ -1,0 +1,133 @@
+{
+  "description": "Steps every RunStore must pass, run in order against an empty store. `doc` refers to fixtures/run-store/stored-run.json; `with` overrides fields of doc.run.",
+  "steps": [
+    {
+      "op": "get",
+      "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+      "expect": {
+        "result": null
+      }
+    },
+    {
+      "op": "save",
+      "doc": "stored-run",
+      "expected_version": null,
+      "expect": {
+        "version": 1
+      }
+    },
+    {
+      "op": "save",
+      "doc": "stored-run",
+      "expected_version": null,
+      "expect": {
+        "error": "conflict"
+      }
+    },
+    {
+      "op": "get",
+      "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+      "expect": {
+        "equals_doc": "stored-run",
+        "version": 1
+      }
+    },
+    {
+      "op": "save",
+      "doc": "stored-run",
+      "with": {
+        "status": "partial"
+      },
+      "expected_version": 1,
+      "expect": {
+        "version": 2
+      }
+    },
+    {
+      "op": "save",
+      "doc": "stored-run",
+      "with": {
+        "status": "done"
+      },
+      "expected_version": 1,
+      "expect": {
+        "error": "conflict"
+      }
+    },
+    {
+      "op": "get",
+      "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+      "expect": {
+        "run_status": "partial",
+        "version": 2
+      }
+    },
+    {
+      "op": "save",
+      "doc": "stored-run",
+      "with": {
+        "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N3",
+        "created_at": "2026-10-12T19:00:00Z"
+      },
+      "expected_version": null,
+      "expect": {
+        "version": 1
+      }
+    },
+    {
+      "op": "list",
+      "limit": 10,
+      "expect": {
+        "ids": [
+          "run_01JAB2C3D4E5F6G7H8J9K0M1N3",
+          "run_01JAB2C3D4E5F6G7H8J9K0M1N2"
+        ]
+      }
+    },
+    {
+      "op": "list",
+      "limit": 1,
+      "expect": {
+        "ids": [
+          "run_01JAB2C3D4E5F6G7H8J9K0M1N3"
+        ]
+      }
+    },
+    {
+      "op": "list",
+      "limit": 10,
+      "before": "run_01JAB2C3D4E5F6G7H8J9K0M1N3",
+      "expect": {
+        "ids": [
+          "run_01JAB2C3D4E5F6G7H8J9K0M1N2"
+        ]
+      }
+    },
+    {
+      "op": "delete",
+      "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+      "expect": {}
+    },
+    {
+      "op": "get",
+      "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+      "expect": {
+        "result": null
+      }
+    },
+    {
+      "op": "delete",
+      "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+      "expect": {}
+    },
+    {
+      "op": "list",
+      "limit": 10,
+      "expect": {
+        "ids": [
+          "run_01JAB2C3D4E5F6G7H8J9K0M1N3"
+        ]
+      }
+    }
+  ]
+}

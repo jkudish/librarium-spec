@@ -1,0 +1,18 @@
+{
+  "description": "With no research source set up and no `only`, there is nothing to run.",
+  "setup": {
+    "sources": [],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q"
+  },
+  "expected": {
+    "error": "no_sources"
+  }
+}

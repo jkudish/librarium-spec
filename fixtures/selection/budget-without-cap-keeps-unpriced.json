@@ -1,0 +1,29 @@
+{
+  "description": "Without `max_cost`, sources without an estimate still run.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {
+    "exa": "0.10",
+    "kagi": null
+  },
+  "request": {
+    "question": "q"
+  },
+  "expected": {
+    "selected": [
+      "exa",
+      "kagi"
+    ],
+    "skipped": [],
+    "estimated": null
+  }
+}

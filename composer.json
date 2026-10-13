@@ -1,0 +1,7 @@
+{
+    "name": "jkudish/librarium-spec",
+    "description": "Shared Librarium contract: request/Run schemas, source catalog, and conformance fixtures.",
+    "type": "library",
+    "license": "MIT",
+    "require": {}
+}

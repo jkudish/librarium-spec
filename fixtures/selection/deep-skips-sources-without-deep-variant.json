@@ -1,0 +1,32 @@
+{
+  "description": "`depth: deep` keeps sources with a deep variant and skips the rest.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "depth": "deep"
+  },
+  "expected": {
+    "selected": [
+      "exa",
+      "perplexity"
+    ],
+    "skipped": [
+      {
+        "source": "kagi",
+        "reason": "no_deep_variant"
+      }
+    ]
+  }
+}

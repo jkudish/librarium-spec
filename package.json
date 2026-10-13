@@ -1,0 +1,17 @@
+{
+  "name": "librarium-spec",
+  "version": "0.1.0",
+  "description": "Shared Librarium contract: request/Run schemas, source catalog, and conformance fixtures.",
+  "license": "MIT",
+  "type": "module",
+  "files": ["SPEC.md", "schema", "sources.json", "fixtures"],
+  "exports": {
+    "./sources.json": "./sources.json",
+    "./schema/*": "./schema/*",
+    "./fixtures/*": "./fixtures/*",
+    "./package.json": "./package.json"
+  },
+  "repository": { "type": "git", "url": "git+https://github.com/jkudish/librarium-spec.git" },
+  "scripts": { "test": "node scripts/check.mjs" },
+  "devDependencies": { "ajv": "^8.17.1", "ajv-formats": "^3.0.1" }
+}

@@ -1,0 +1,37 @@
+{
+  "description": "Groups in `only` expand to their members; the result follows catalog order and has no duplicates.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {
+      "mine": [
+        "perplexity",
+        "exa"
+      ]
+    }
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "only": [
+      "mine",
+      "kagi",
+      "exa"
+    ]
+  },
+  "expected": {
+    "selected": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "skipped": []
+  }
+}

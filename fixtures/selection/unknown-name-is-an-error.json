@@ -1,0 +1,26 @@
+{
+  "description": "A name that is not a source, engine, or group fails.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "only": [
+      "nope"
+    ]
+  },
+  "expected": {
+    "error": "unknown_name",
+    "name": "nope"
+  }
+}

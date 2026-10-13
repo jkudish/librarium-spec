@@ -1,0 +1,43 @@
+{
+  "description": "With `max_cost`, unbounded estimates are skipped as unpriced, then sources are admitted in catalog order while they fit; the rest are over_budget.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "openai",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {
+    "exa": "0.10",
+    "kagi": null,
+    "openai": "0.15",
+    "perplexity": "0.05"
+  },
+  "request": {
+    "question": "q",
+    "max_cost": "0.20"
+  },
+  "expected": {
+    "selected": [
+      "exa",
+      "perplexity"
+    ],
+    "skipped": [
+      {
+        "source": "kagi",
+        "reason": "unpriced"
+      },
+      {
+        "source": "openai",
+        "reason": "over_budget"
+      }
+    ],
+    "estimated": "0.15"
+  }
+}

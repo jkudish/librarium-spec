@@ -1,0 +1,54 @@
+{
+  "run": {
+    "spec": "librarium.run/1",
+    "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+    "question": "Replacing GA4 for an EU SaaS: compare Plausible, Fathom, and Matomo",
+    "depth": "quick",
+    "status": "done",
+    "created_at": "2026-10-12T18:04:11Z",
+    "finished_at": "2026-10-12T18:06:14Z",
+    "cost": {
+      "estimated": "0.10",
+      "reported": "0.10",
+      "complete": true,
+      "max": null
+    },
+    "results": [
+      {
+        "source": "exa",
+        "status": "done",
+        "observation": "api",
+        "answer": "## Findings\nPlausible fits small sites.",
+        "citations": [
+          {
+            "url": "https://plausible.io/features",
+            "title": "Plausible features"
+          }
+        ],
+        "cost": {
+          "estimated": "0.10",
+          "reported": "0.10"
+        },
+        "started_at": "2026-10-12T18:04:12Z",
+        "duration_ms": 122000,
+        "provenance": {
+          "provider": "exa",
+          "variant": "search",
+          "model": null,
+          "collector": null
+        },
+        "error": null
+      }
+    ],
+    "skipped": [],
+    "notices": []
+  },
+  "state": {
+    "handles": {}
+  },
+  "files": {
+    "answers/exa.md": "## Findings\nPlausible fits small sites.",
+    "evidence/exa.json": "{\"results\":[]}"
+  },
+  "version": 1
+}

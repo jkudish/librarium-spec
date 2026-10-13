@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/jkudish/librarium-spec/main/schema/stored-run.schema.json",
+  "title": "Librarium stored Run document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run",
+    "state",
+    "files",
+    "version"
+  ],
+  "properties": {
+    "run": {
+      "$ref": "run.schema.json"
+    },
+    "state": {
+      "type": "object",
+      "description": "Private, language-owned execution state (signed provider handles, ledger, reservations). Opaque to other languages except for the 'handles' map.",
+      "properties": {
+        "handles": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^(answers/[a-z0-9-]+\\.md|evidence/[a-z0-9-]+\\.json)$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

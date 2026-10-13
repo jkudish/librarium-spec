@@ -1,6 +1,7 @@
 # Librarium simplified surface: specification
 
 Status: **approved** by Joey Kudish on 2026-10-12 (PlanMode epic #4954).
+Package version 0.1.0: schemas, `sources.json` and fixtures are in place; workers pin a commit until 1.0 is published.
 Governs: Librarium JS 2.0 (`jkudish/librarium`, npm `librarium`), Laravel AI
 Librarium 1.0 (`jkudish/laravel-ai-librarium`), the Firecrawl adapter
 (`jkudish/laravel-ai-librarium-firecrawl`), this package, the CLI, MCP, docs,
@@ -180,7 +181,15 @@ Schemas: `schema/request.schema.json`, `schema/run.schema.json`,
 ### Budget rule (identical in both languages)
 
 With `max_cost`: skip sources without a bounded estimate (`unpriced`); then
-drop sources in catalog order until the sum of estimates fits (`over_budget`).
+walk the remaining sources in catalog order (the order of `sources.json`),
+admitting each whose estimate still fits the remaining budget; the rest are
+`over_budget`. Without `max_cost`, sources without an estimate still run and
+`cost.estimated` is `null`. `skipped` is listed in catalog order.
+
+Selection errors (the request fails before any Run is stored):
+`unknown_name`, `not_configured` (a named source, or an engine with no
+configured collector), `group_name_conflict` (config), `no_sources` (nothing
+set up and no `only`). The fixtures in `fixtures/selection/` are normative.
 During the run, reported spend plus reservations stops unstarted work.
 In-flight calls may finish above the cap; docs say so.
 
@@ -416,14 +425,20 @@ Removed names fail with a message naming the replacement.
 ```text
 SPEC.md
 schema/request.schema.json  schema/run.schema.json  schema/stored-run.schema.json
-sources.json                sources, engines, variants, options, credentials,
-                            pricing identities, per-language availability,
-                            legacy profile mapping, docs URLs, logos
+sources.json                sources and engines in catalog order: variants,
+                            options, credential env names, per-language
+                            availability, and the legacy JS profile and PHP
+                            profile ids each variant replaces
 fixtures/selection/         config + request → selected sources, skips, budget outcome
 fixtures/runs/              valid and invalid Run documents
 fixtures/run-store/         RunStore contract cases
-fixtures/config-migration/  JS v1 config → v3
 ```
+
+Pricing stays in each package (the JS pricing snapshot and PHP
+laravel-ai-pricing), because they read different price sources. JS v1 config
+migration is JS-only, so its fixtures live in the JS repo.
+`scripts/check.mjs` validates the fixtures against the schemas and a reference
+selection implementation; it is test-only and not published.
 
 Both packages pin a minor version and run the fixtures in their test suites.
 This replaces `contracts/v1` in the JS repo and the PHP `typescript:repin`

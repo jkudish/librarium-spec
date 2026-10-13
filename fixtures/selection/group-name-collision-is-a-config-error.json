@@ -1,0 +1,27 @@
+{
+  "description": "A group named like a source or engine is a configuration error.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {
+      "exa": [
+        "kagi"
+      ]
+    }
+  },
+  "estimates": {},
+  "request": {
+    "question": "q"
+  },
+  "expected": {
+    "error": "group_name_conflict",
+    "name": "exa"
+  }
+}
