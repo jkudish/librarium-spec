@@ -89,3 +89,18 @@ if (!Array.isArray(steps) || steps.length === 0) fail('run-store/contract.json h
 
 if (failures) { console.error(`${failures} failure(s)`); process.exit(1); }
 console.log(`ok: ${list('fixtures/runs/valid').length} valid and ${list('fixtures/runs/invalid').length} invalid Runs, ${list('fixtures/selection').length} selection cases, ${sources.length} sources, ${engines.length} engines`);
+
+{
+  const stored = json('fixtures/run-store/stored-run.json');
+  const dir = `fixtures/run-store/filesystem/${stored.run.id}`;
+  const folder = {
+    run: json(`${dir}/run.json`),
+    ...(({ version, state }) => ({ version, state }))(json(`${dir}/state.json`)),
+    files: Object.fromEntries(Object.keys(stored.files).map((k) => [k, readFileSync(new URL(`../${dir}/${k}`, import.meta.url), 'utf8')])),
+  };
+  const canon = (o) => JSON.stringify(o, Object.keys(o).sort());
+  if (JSON.stringify({ ...folder, files: folder.files }) === '' || JSON.stringify(folder.run) !== JSON.stringify(stored.run) || folder.version !== stored.version || JSON.stringify(folder.state) !== JSON.stringify(stored.state) || JSON.stringify(folder.files) !== JSON.stringify(stored.files)) {
+    console.error('✗ run-store/filesystem example does not match stored-run.json'); process.exit(1);
+  }
+  console.log('ok: filesystem layout example matches stored-run.json');
+}

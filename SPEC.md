@@ -267,7 +267,13 @@ Filesystem layout, shared by both languages:
 <path>/<run_id>/evidence/<source>.json
 ```
 
-An unencrypted folder written by one language is readable by the other.
+`run.json` is exactly the public Run. `state.json` is
+`{ "version": <int ≥ 1>, "state": { … } }` and carries the StoredRun version
+used for compare-and-swap; nothing else in the folder is versioned. Writers
+update `state.json` last, after `run.json` and the files. There is no legacy
+form: a `state.json` without `version` is invalid. An example folder is in
+`fixtures/run-store/filesystem/`. An unencrypted folder written by one
+language is readable by the other.
 
 ### Adding a store
 
