@@ -213,7 +213,7 @@ depths, so there is no mode.
 
 | Surface | Default | Not waiting |
 | --- | --- | --- |
-| CLI | waits with live progress; Ctrl-C detaches and prints `librarium show <id>` | `--no-wait` |
+| CLI | waits with live progress; Ctrl-C detaches and prints `librarium show <id>` | `--no-wait` (deep only; quick work runs inline, so `--no-wait` without `--deep` fails before anything is stored; `--dry-run` is exempt) |
 | MCP | waits up to `wait_seconds` (default 45, max 50), then returns the Run as `running` | `wait_seconds: 0` |
 | JS | `await research()` resolves when the Run finishes | `{ wait: false }` |
 | PHP | `run()` waits | `queue()` dispatches one encrypted job and returns the running Run's id |
@@ -465,6 +465,10 @@ migration is JS-only, so its fixtures live in the JS repo.
 selection implementation; it is test-only and not published.
 
 Both packages pin a minor version and run the fixtures in their test suites.
+Until the package is published, JS pins a git commit and PHP declares a
+Composer `package` repository with the exact git source reference (a
+`dev-main#sha` constraint fails `composer validate --strict`). Publishing the
+spec package is a release gate for both.
 This replaces `contracts/v1` in the JS repo and the PHP `typescript:repin`
 step. The website reads `sources.json` for its provider grid and counts.
 
