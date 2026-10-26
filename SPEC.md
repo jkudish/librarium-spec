@@ -5,7 +5,7 @@ Package version 0.1.0: schemas, `sources.json` and fixtures are in place; worker
 Governs: Librarium JS 2.0 (`jkudish/librarium`, npm `librarium`), Laravel AI
 Librarium 1.0 (`jkudish/laravel-ai-librarium`), the Firecrawl adapter
 (`jkudish/laravel-ai-librarium-firecrawl`), this package, the CLI, MCP, docs,
-skills, and librarium.agentsy.build.
+skills, and librarium.si.
 
 Neither package has released this surface. All breaking changes land before
 JS 2.0 and PHP 1.0 so no further breaking release is needed.
