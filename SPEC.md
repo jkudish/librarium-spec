@@ -1,7 +1,7 @@
 # Librarium simplified surface: specification
 
 Status: **approved** by Joey Kudish on 2026-10-12 (PlanMode epic #4954).
-Package version 0.1.0: schemas, `sources.json` and fixtures are in place; workers pin a commit until 1.0 is published.
+Package version 1.0.0: published as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
 Governs: Librarium JS 2.0 (`jkudish/librarium`, npm `librarium`), Laravel AI
 Librarium 1.0 (`jkudish/laravel-ai-librarium`), the Firecrawl adapter
 (`jkudish/laravel-ai-librarium-firecrawl`), this package, the CLI, MCP, docs,
