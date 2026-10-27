@@ -7,8 +7,8 @@ Librarium 1.0 (`jkudish/laravel-ai-librarium`), the Firecrawl adapter
 (`jkudish/laravel-ai-librarium-firecrawl`), this package, the CLI, MCP, docs,
 skills, and librarium.si.
 
-Neither package has released this surface. All breaking changes land before
-JS 2.0 and PHP 1.0 so no further breaking release is needed.
+JS 2.0 and PHP 1.0 were the first releases of this surface. All of its
+breaking changes landed before them.
 
 ## 1. Goal
 
@@ -488,11 +488,8 @@ migration is JS-only, so its fixtures live in the JS repo.
 `scripts/check.mjs` validates the fixtures against the schemas and a reference
 selection implementation; it is test-only and not published.
 
-Both packages pin a minor version and run the fixtures in their test suites.
-Until the package is published, JS pins a git commit and PHP declares a
-Composer `package` repository with the exact git source reference (a
-`dev-main#sha` constraint fails `composer validate --strict`). Publishing the
-spec package is a release gate for both.
+Both packages pin a minor version (`^1.0`) and run the fixtures in their test
+suites.
 This replaces `contracts/v1` in the JS repo and the PHP `typescript:repin`
 step. The website reads `sources.json` for its provider grid and counts.
 
