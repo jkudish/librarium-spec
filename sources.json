@@ -138,7 +138,7 @@
       "id": "google",
       "name": "Google results",
       "kind": "research",
-      "docs": "https://librarium.agentsy.build/docs/providers",
+      "docs": "https://librarium.si/docs/providers",
       "variants": {
         "quick": {
           "js": "searchapi/search",

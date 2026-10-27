@@ -1,6 +1,6 @@
 {
   "name": "librarium-spec",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Shared Librarium contract: request/Run schemas, source catalog, and conformance fixtures.",
   "license": "MIT",
   "type": "module",

@@ -1,14 +1,14 @@
 # Librarium simplified surface: specification
 
 Status: **approved** by Joey Kudish on 2026-10-12 (PlanMode epic #4954).
-Package version 0.1.0: schemas, `sources.json` and fixtures are in place; workers pin a commit until 1.0 is published.
+Package version 1.0.0: published as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
 Governs: Librarium JS 2.0 (`jkudish/librarium`, npm `librarium`), Laravel AI
 Librarium 1.0 (`jkudish/laravel-ai-librarium`), the Firecrawl adapter
 (`jkudish/laravel-ai-librarium-firecrawl`), this package, the CLI, MCP, docs,
-skills, and librarium.agentsy.build.
+skills, and librarium.si.
 
-Neither package has released this surface. All breaking changes land before
-JS 2.0 and PHP 1.0 so no further breaking release is needed.
+JS 2.0 and PHP 1.0 were the first releases of this surface. All of its
+breaking changes landed before them.
 
 ## 1. Goal
 
@@ -259,10 +259,17 @@ interface RunStore
 
 | Store | JS | PHP |
 | --- | --- | --- |
-| `filesystem` | default for the CLI, MCP and `librarium/node` | default; any Laravel disk; encrypted with the app key unless `encrypt` is false |
+| `filesystem` | default for the CLI, MCP and `librarium/node` | default; local Laravel disks only; encrypted with the app key unless `encrypt` is false |
 | `database` | — | opt-in: any connection, one table (`librarium_runs` by default), one row per Run holding run, state, files and version; query builder, no Eloquent; migration published with `vendor:publish --tag=librarium-migrations` and never auto-run |
-| `cache` | — | any Laravel cache store, with a TTL |
+| `cache` | — | process-local Laravel ArrayStore, or standalone RedisStore on Redis 7+ with connection serialization and compression disabled; document TTL supported |
 | `memory` | default for `librarium/core` (Workers, browsers) | tests |
+
+The built-in PHP filesystem and cache stores reject unsupported configurations
+before mutation. Remote or arbitrary Flysystem disks, Redis Cluster,
+decorated/failover caches, and other cache drivers require a custom `RunStore`.
+For shared production storage, use the database store, supported standalone
+Redis, or a custom store that supplies atomic version checks. ArrayStore is
+safe only within one process; it is not shared queue-worker persistence.
 
 Filesystem layout, shared by both languages:
 
@@ -280,6 +287,23 @@ update `state.json` last, after `run.json` and the files. There is no legacy
 form: a `state.json` without `version` is invalid. An example folder is in
 `fixtures/run-store/filesystem/`. An unencrypted folder written by one
 language is readable by the other.
+
+Local filesystem readers and writers in both languages coordinate through
+`<path>/<run_id>/run.json.lock`: exclusive creation, a unique ownership token,
+no age expiry, and token-checked release. A writer holds ownership across the
+complete files, Run, and state commit; a lease that can expire during a write
+does not satisfy this contract. Crashed-owner recovery is explicit: establish
+that the owner cannot resume before removing its marker. Multi-file writes
+are not crash-atomic; the lock prevents concurrent access, not partial disk
+writes after process or storage failure.
+
+ArrayStore holds a non-expiring token-owned lock across the document and index
+commit. Redis uses a server-side conditional commit, not a correctness lease:
+one Lua operation checks the stored version and writes the JSON document,
+document TTL, and listing membership together. It preflights key types and
+required command permissions before mutation; Redis Lua does not roll back
+runtime errors. A transport failure leaves the outcome uncertain and never
+authorizes resubmitting provider work.
 
 ### Adding a store
 
@@ -464,11 +488,8 @@ migration is JS-only, so its fixtures live in the JS repo.
 `scripts/check.mjs` validates the fixtures against the schemas and a reference
 selection implementation; it is test-only and not published.
 
-Both packages pin a minor version and run the fixtures in their test suites.
-Until the package is published, JS pins a git commit and PHP declares a
-Composer `package` repository with the exact git source reference (a
-`dev-main#sha` constraint fails `composer validate --strict`). Publishing the
-spec package is a release gate for both.
+Both packages pin a minor version (`^1.0`) and run the fixtures in their test
+suites.
 This replaces `contracts/v1` in the JS repo and the PHP `typescript:repin`
 step. The website reads `sources.json` for its provider grid and counts.
 
