@@ -1,5 +1,13 @@
 # librarium-spec
 
+[![npm](https://img.shields.io/npm/v/librarium-spec?label=npm)](https://www.npmjs.com/package/librarium-spec)
+[![Packagist version](https://img.shields.io/packagist/v/jkudish/librarium-spec)](https://packagist.org/packages/jkudish/librarium-spec)
+[![License: MIT](https://img.shields.io/npm/l/librarium-spec?color=blue)](LICENSE)
+
+<p align="center">
+  <img src=".github/librarium-banner.png" alt="librarium: Give your agent more than one source." />
+</p>
+
 Shared data for Librarium: request, Run and stored-Run JSON schemas, the source catalog, and conformance fixtures. [Librarium](https://github.com/jkudish/librarium) (JavaScript, CLI and MCP) and [Laravel AI Librarium](https://github.com/jkudish/laravel-ai-librarium) (PHP) both read it, so a Run written by one validates in the other.
 
 It contains data and tests only, no runtime code. Most people get it as a dependency of those packages. Install it directly when you build a Librarium-compatible tool, store, or report reader.
@@ -58,8 +66,23 @@ npm test
 
 `npm test` runs `scripts/check.mjs`, which validates every fixture against the schemas and a reference selection implementation.
 
-## Links
+Read the full [specification](SPEC.md).
 
-- Documentation: [librarium.si](https://librarium.si)
-- [Specification](SPEC.md)
-- [MIT license](LICENSE)
+## The Librarium family
+
+- [Librarium](https://github.com/jkudish/librarium): the JavaScript CLI, MCP server and library (`npm install -g librarium`).
+- [Laravel AI Librarium](https://github.com/jkudish/laravel-ai-librarium): the Laravel package (`composer require jkudish/laravel-ai-librarium`).
+- [Laravel AI Librarium: Firecrawl](https://github.com/jkudish/laravel-ai-librarium-firecrawl): collects AI answer engine results for the Laravel package through Firecrawl browser sessions.
+- [librarium.si](https://librarium.si): documentation for all of them.
+
+## Sponsoring
+
+If you find the Librarium spec useful, consider becoming a [sponsor](https://github.com/sponsors/jkudish) or [donating](https://stripe.com/@jkudish).
+
+## Contributing and security
+
+To report a vulnerability, see [SECURITY.md](SECURITY.md).
+
+## License
+
+[MIT](LICENSE)
