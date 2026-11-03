@@ -1,7 +1,7 @@
 # Librarium simplified surface: specification
 
 Status: **approved** by Joey Kudish on 2026-10-12 (PlanMode epic #4954).
-Package version 1.1.0: published as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
+Package version 1.1.0, distributed as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
 1.1.0 adds optional result `search_results` and the `collector` option on
 `openai`, `claude`, `perplexity` and `gemini` (approved by Joey Kudish on
 2026-11-03, PlanMode #5820).
@@ -82,7 +82,8 @@ are skipped by `deep` the same way.
 `quick: grounded`). `dataforseo` asks the same provider's model through
 DataForSEO's LLM Responses API in Live mode, with web search on and DataForSEO
 credentials; `model` selects DataForSEO's `model_name` where the source has a
-`model` option. It replaces only the quick variant, reports
+`model` option. It replaces only the quick variant (a `deep` request still runs
+the direct deep variant), reports
 `provenance.collector: "dataforseo"` and `search_results`, and is unpriced
 because DataForSEO adds the model's token charge to its per-task fee.
 
