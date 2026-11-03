@@ -48,9 +48,24 @@
       "options": {
         "model": {
           "type": "string"
+        },
+        "collector": {
+          "default": "direct",
+          "values": [
+            "direct",
+            "dataforseo"
+          ],
+          "variants": {
+            "dataforseo": {
+              "js": null,
+              "php": "dataforseo-llm-claude",
+              "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD"
+            }
+          }
         }
       },
-      "php_credential": "ai.providers.anthropic.key"
+      "php_credential": "ai.providers.anthropic.key",
+      "notes": "collector dataforseo asks the same provider through DataForSEO's LLM Responses API (Live) with DataForSEO credentials."
     },
     {
       "id": "exa",
@@ -130,9 +145,27 @@
               "env": "GEMINI_API_KEY"
             }
           }
+        },
+        "collector": {
+          "default": "direct",
+          "values": [
+            "direct",
+            "dataforseo"
+          ],
+          "variants": {
+            "dataforseo": {
+              "js": null,
+              "php": "dataforseo-llm-gemini",
+              "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
+              "requires": {
+                "quick": "grounded"
+              }
+            }
+          }
         }
       },
-      "php_credential": "ai.providers.gemini.key"
+      "php_credential": "ai.providers.gemini.key",
+      "notes": "collector dataforseo asks the same provider through DataForSEO's LLM Responses API (Live) with DataForSEO credentials."
     },
     {
       "id": "google",
@@ -278,9 +311,24 @@
         },
         "effort": {
           "type": "string"
+        },
+        "collector": {
+          "default": "direct",
+          "values": [
+            "direct",
+            "dataforseo"
+          ],
+          "variants": {
+            "dataforseo": {
+              "js": null,
+              "php": "dataforseo-llm-chatgpt",
+              "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD"
+            }
+          }
         }
       },
-      "php_credential": "ai.providers.openai.key"
+      "php_credential": "ai.providers.openai.key",
+      "notes": "collector dataforseo asks the same provider through DataForSEO's LLM Responses API (Live) with DataForSEO credentials."
     },
     {
       "id": "openrouter",
@@ -416,9 +464,27 @@
               "env": "PERPLEXITY_API_KEY"
             }
           }
+        },
+        "collector": {
+          "default": "direct",
+          "values": [
+            "direct",
+            "dataforseo"
+          ],
+          "variants": {
+            "dataforseo": {
+              "js": null,
+              "php": "dataforseo-llm-perplexity",
+              "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
+              "requires": {
+                "quick": "sonar-pro"
+              }
+            }
+          }
         }
       },
-      "php_credential": "services.perplexity.key"
+      "php_credential": "services.perplexity.key",
+      "notes": "collector dataforseo asks the same provider through DataForSEO's LLM Responses API (Live) with DataForSEO credentials."
     },
     {
       "id": "tavily",

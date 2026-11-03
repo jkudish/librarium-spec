@@ -1,0 +1,130 @@
+{
+  "spec": "librarium.run/1",
+  "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+  "question": "Replacing GA4 for an EU SaaS: compare Plausible, Fathom, and Matomo",
+  "depth": "quick",
+  "status": "done",
+  "created_at": "2026-10-12T18:04:11Z",
+  "finished_at": "2026-10-12T18:06:14Z",
+  "cost": {
+    "estimated": null,
+    "reported": "0.40",
+    "complete": true,
+    "max": null
+  },
+  "results": [
+    {
+      "source": "claude",
+      "status": "done",
+      "observation": "api",
+      "answer": "Plausible is the lighter EU-hosted option [1].",
+      "citations": [
+        {
+          "url": "https://plausible.io/features",
+          "title": "Plausible features"
+        }
+      ],
+      "search_results": [
+        {
+          "url": "https://plausible.io/features",
+          "title": "Plausible features",
+          "snippet": "Lightweight, cookie-free analytics.",
+          "published_at": null
+        },
+        {
+          "url": "https://usefathom.com/",
+          "title": "Fathom Analytics",
+          "snippet": null,
+          "published_at": "2026-10-01T00:00:00Z"
+        }
+      ],
+      "cost": {
+        "estimated": null,
+        "reported": "0.10"
+      },
+      "started_at": "2026-10-12T18:04:12Z",
+      "duration_ms": 122000,
+      "provenance": {
+        "provider": "anthropic",
+        "variant": "chat",
+        "model": "claude-sonnet-5",
+        "collector": null
+      },
+      "error": null
+    },
+    {
+      "source": "perplexity",
+      "status": "done",
+      "observation": "api",
+      "answer": "No current sources found.",
+      "citations": [],
+      "search_results": [],
+      "cost": {
+        "estimated": null,
+        "reported": "0.10"
+      },
+      "started_at": "2026-10-12T18:04:12Z",
+      "duration_ms": 122000,
+      "provenance": {
+        "provider": "perplexity",
+        "variant": "sonar-pro",
+        "model": "sonar-pro",
+        "collector": "dataforseo"
+      },
+      "error": null
+    },
+    {
+      "source": "exa",
+      "status": "done",
+      "observation": "api",
+      "answer": "Plausible is the lighter EU-hosted option [1].",
+      "citations": [
+        {
+          "url": "https://plausible.io/features",
+          "title": "Plausible features"
+        }
+      ],
+      "cost": {
+        "estimated": null,
+        "reported": "0.10"
+      },
+      "started_at": "2026-10-12T18:04:12Z",
+      "duration_ms": 122000,
+      "provenance": {
+        "provider": "exa",
+        "variant": "search",
+        "model": null,
+        "collector": null
+      },
+      "error": null
+    },
+    {
+      "source": "gemini",
+      "status": "done",
+      "observation": "api",
+      "answer": "Plausible is the lighter EU-hosted option [1].",
+      "citations": [
+        {
+          "url": "https://plausible.io/features",
+          "title": "Plausible features"
+        }
+      ],
+      "search_results": null,
+      "cost": {
+        "estimated": null,
+        "reported": "0.10"
+      },
+      "started_at": "2026-10-12T18:04:12Z",
+      "duration_ms": 122000,
+      "provenance": {
+        "provider": "gemini",
+        "variant": "grounded",
+        "model": null,
+        "collector": null
+      },
+      "error": null
+    }
+  ],
+  "skipped": [],
+  "notices": []
+}

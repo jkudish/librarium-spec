@@ -1,0 +1,49 @@
+{
+  "spec": "librarium.run/1",
+  "id": "run_01JAB2C3D4E5F6G7H8J9K0M1N2",
+  "question": "Replacing GA4 for an EU SaaS: compare Plausible, Fathom, and Matomo",
+  "depth": "quick",
+  "status": "done",
+  "created_at": "2026-10-12T18:04:11Z",
+  "finished_at": "2026-10-12T18:06:14Z",
+  "cost": {
+    "estimated": null,
+    "reported": "0.40",
+    "complete": true,
+    "max": null
+  },
+  "results": [
+    {
+      "source": "claude",
+      "status": "done",
+      "observation": "api",
+      "answer": "Plausible is the lighter EU-hosted option [1].",
+      "citations": [
+        {
+          "url": "https://plausible.io/features",
+          "title": "Plausible features"
+        }
+      ],
+      "search_results": [
+        {
+          "title": "No URL"
+        }
+      ],
+      "cost": {
+        "estimated": null,
+        "reported": "0.10"
+      },
+      "started_at": "2026-10-12T18:04:12Z",
+      "duration_ms": 122000,
+      "provenance": {
+        "provider": "anthropic",
+        "variant": "chat",
+        "model": "claude-sonnet-5",
+        "collector": null
+      },
+      "error": null
+    }
+  ],
+  "skipped": [],
+  "notices": []
+}

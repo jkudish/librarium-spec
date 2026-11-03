@@ -1,7 +1,10 @@
 # Librarium simplified surface: specification
 
 Status: **approved** by Joey Kudish on 2026-10-12 (PlanMode epic #4954).
-Package version 1.0.0: published as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
+Package version 1.1.0, distributed as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
+1.1.0 adds optional result `search_results` and the `collector` option on
+`openai`, `claude`, `perplexity` and `gemini` (approved by Joey Kudish on
+2026-11-03, PlanMode #5820).
 Governs: Librarium JS 2.0 (`jkudish/librarium`, npm `librarium`), Laravel AI
 Librarium 1.0 (`jkudish/laravel-ai-librarium`), the Firecrawl adapter
 (`jkudish/laravel-ai-librarium-firecrawl`), this package, the CLI, MCP, docs,
@@ -73,6 +76,16 @@ are skipped by `deep` the same way.
 | `tavily` | Tavily search | — | — |
 | `valyu` | Valyu search | Valyu research | `mode` (default `standard`), `output` |
 | `you` | You.com answer | You.com research | `quick: answer \| research` |
+
+`collector: direct | dataforseo` (since 1.1, PHP only) is an option of
+`openai`, `claude`, `perplexity` (with `quick: sonar-pro`) and `gemini` (with
+`quick: grounded`). `dataforseo` asks the same provider's model through
+DataForSEO's LLM Responses API in Live mode, with web search on and DataForSEO
+credentials; `model` selects DataForSEO's `model_name` where the source has a
+`model` option. It replaces only the quick variant (a `deep` request still runs
+the direct deep variant), reports
+`provenance.collector: "dataforseo"` and `search_results`, and is unpriced
+because DataForSEO adds the model's token charge to its per-task fee.
 
 Mapping from today's JS profiles and PHP profile ids to (source, depth,
 option) lives in `sources.json` and is the migration table for config and
@@ -175,6 +188,17 @@ Schemas: `schema/request.schema.json`, `schema/run.schema.json`,
   `over_budget`, `excluded`, `no_collector`.
 - `answer` is Markdown (null for search-only sources); `citations` always
   present. Raw provider bodies are evidence in the store, never inline.
+- `citations` are the pages the answer cites. A page the source's search
+  returned but the answer does not cite is never a citation.
+- `search_results` (optional, since 1.1) are the pages the source's own web
+  search returned while answering: `{ url, title, snippet, published_at }`, in
+  provider order, exact-URL duplicates removed (first kept). They include
+  pages the answer did not cite, so cited pages usually appear in both lists.
+  Absent or `null` means the source does not report its retrieval set, which
+  is not evidence that it searched nothing; `[]` means it reported an empty
+  set. A listed page was retrieved, not necessarily read or rejected.
+  Search-only sources, whose results already are the `citations`, omit it.
+  Readers built against 1.0 must be updated before reading Runs that carry it.
 - `cost.reported` is provider-reported only; unknown is `null`, never `"0"`.
   `cost.complete` is true only when every result reported a cost.
 
