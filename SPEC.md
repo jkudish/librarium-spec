@@ -1,7 +1,7 @@
 # Librarium simplified surface: specification
 
 Status: **approved** by Joey Kudish on 2026-10-12 (PlanMode epic #4954).
-Package version 1.1.0, distributed as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
+Package version 1.1.1, distributed as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
 1.1.0 adds optional result `search_results` and the `collector` option on
 `openai`, `claude`, `perplexity` and `gemini` (approved by Joey Kudish on
 2026-11-03, PlanMode #5820).
