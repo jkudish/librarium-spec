@@ -1,0 +1,34 @@
+{
+  "description": "bing-ai-mode has only the cloro collector, so another collector skips it with no_collector.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "searchapi",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "only": [
+      "chatgpt",
+      "bing-ai-mode"
+    ]
+  },
+  "expected": {
+    "selected": [
+      "chatgpt"
+    ],
+    "skipped": [
+      {
+        "source": "bing-ai-mode",
+        "reason": "no_collector"
+      }
+    ]
+  }
+}

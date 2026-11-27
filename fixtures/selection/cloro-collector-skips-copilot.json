@@ -1,0 +1,36 @@
+{
+  "description": "With the cloro collector, the new bing-ai-mode engine runs and copilot, which Cloro does not collect, is skipped with no_collector.",
+  "setup": {
+    "sources": [
+      "exa",
+      "kagi",
+      "perplexity"
+    ],
+    "engines": {
+      "collector": "cloro",
+      "configured": true
+    },
+    "groups": {}
+  },
+  "estimates": {},
+  "request": {
+    "question": "q",
+    "only": [
+      "bing-ai-mode",
+      "copilot",
+      "google-ai-overview"
+    ]
+  },
+  "expected": {
+    "selected": [
+      "google-ai-overview",
+      "bing-ai-mode"
+    ],
+    "skipped": [
+      {
+        "source": "copilot",
+        "reason": "no_collector"
+      }
+    ]
+  }
+}
