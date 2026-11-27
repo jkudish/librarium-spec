@@ -1,7 +1,7 @@
 # Librarium simplified surface: specification
 
 Status: **approved** by Joey Kudish on 2026-10-12 (PlanMode epic #4954).
-Package version 1.3.0, distributed as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
+Package version 1.4.0, distributed as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
 1.1.0 adds optional result `search_results` and the `collector` option on
 `openai`, `claude`, `perplexity` and `gemini` (approved by Joey Kudish on
 2026-11-03, PlanMode #5820).
@@ -12,6 +12,8 @@ T-01a21a26-2bda-76af-a5f4-f870892c427e).
 1.3.0 fills in the `js` and `js_live` ids for the DataForSEO and Cloro
 collectors and the `collector: dataforseo` option, which Librarium JS now
 implements (same approval).
+1.4.0 adds the `serply` value of the `google` collector (Serply Google Search,
+web only), with `js` and `php` ids in the same release.
 Governs: Librarium JS 2.0 (`jkudish/librarium`, npm `librarium`), Laravel AI
 Librarium 1.0 (`jkudish/laravel-ai-librarium`), the Firecrawl adapter
 (`jkudish/laravel-ai-librarium-firecrawl`), this package, the CLI, MCP, docs,
@@ -72,7 +74,7 @@ are skipped by `deep` the same way.
 | `exa` | Exa search | Exa research | — |
 | `firecrawl` | Firecrawl search | — | `sources`, `limit` |
 | `gemini` | Gemini grounded | Gemini Deep Research | `quick: grounded \| chat` |
-| `google` | Google results via a SERP collector | — | `collector: searchapi \| serpapi \| serpbase \| cloro`, `vertical: web \| news` (news needs `serpbase` or `cloro`) |
+| `google` | Google results via a SERP collector | — | `collector: searchapi \| serpapi \| serpbase \| cloro \| serply`, `vertical: web \| news` (news needs `serpbase` or `cloro`) |
 | `grok` | Grok web search | — | `search: web \| x \| both` |
 | `jina` | Jina search | — | — |
 | `kagi` | Kagi FastGPT | — | — |

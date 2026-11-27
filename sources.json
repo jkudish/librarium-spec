@@ -186,7 +186,8 @@
             "searchapi",
             "serpapi",
             "serpbase",
-            "cloro"
+            "cloro",
+            "serply"
           ],
           "variants": {
             "serpapi": {
@@ -203,6 +204,11 @@
               "js": "cloro-google/search",
               "php": "cloro-google-search",
               "env": "CLORO_API_KEY"
+            },
+            "serply": {
+              "js": "serply/search",
+              "php": "serply-search",
+              "env": "SERPLY_API_KEY"
             }
           }
         },
