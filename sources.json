@@ -185,7 +185,8 @@
           "values": [
             "searchapi",
             "serpapi",
-            "serpbase"
+            "serpbase",
+            "cloro"
           ],
           "variants": {
             "serpapi": {
@@ -197,6 +198,11 @@
               "js": "serpbase/search",
               "php": "serpbase-search",
               "env": "SERPBASE_API_KEY"
+            },
+            "cloro": {
+              "js": null,
+              "php": "cloro-google-search",
+              "env": "CLORO_API_KEY"
             }
           }
         },
@@ -213,6 +219,13 @@
               "env": "SERPBASE_API_KEY",
               "requires": {
                 "collector": "serpbase"
+              },
+              "by_collector": {
+                "cloro": {
+                  "js": null,
+                  "php": "cloro-google-news",
+                  "env": "CLORO_API_KEY"
+                }
               }
             }
           }
@@ -599,7 +612,24 @@
                 "standard",
                 "live"
               ],
+              "js_live": null,
               "php_live": "dataforseo-chatgpt-live"
+            }
+          }
+        },
+        "cloro": {
+          "js": null,
+          "php": "cloro-chatgpt",
+          "env": "CLORO_API_KEY",
+          "options": {
+            "priority": {
+              "default": "standard",
+              "values": [
+                "standard",
+                "live"
+              ],
+              "js_live": null,
+              "php_live": "cloro-chatgpt-live"
             }
           }
         },
@@ -632,7 +662,24 @@
                 "standard",
                 "live"
               ],
+              "js_live": null,
               "php_live": "dataforseo-gemini-live"
+            }
+          }
+        },
+        "cloro": {
+          "js": null,
+          "php": "cloro-gemini",
+          "env": "CLORO_API_KEY",
+          "options": {
+            "priority": {
+              "default": "standard",
+              "values": [
+                "standard",
+                "live"
+              ],
+              "js_live": null,
+              "php_live": "cloro-gemini-live"
             }
           }
         },
@@ -665,7 +712,24 @@
                 "standard",
                 "live"
               ],
+              "js_live": null,
               "php_live": "dataforseo-google-ai-mode-live"
+            }
+          }
+        },
+        "cloro": {
+          "js": null,
+          "php": "cloro-google-ai-mode",
+          "env": "CLORO_API_KEY",
+          "options": {
+            "priority": {
+              "default": "standard",
+              "values": [
+                "standard",
+                "live"
+              ],
+              "js_live": null,
+              "php_live": "cloro-google-ai-mode-live"
             }
           }
         },
@@ -686,6 +750,22 @@
           "js": "searchapi-google-ai-overview/surface",
           "php": "searchapi-google-ai-overview",
           "env": "SEARCHAPI_API_KEY"
+        },
+        "cloro": {
+          "js": null,
+          "php": "cloro-google-ai-overview",
+          "env": "CLORO_API_KEY",
+          "options": {
+            "priority": {
+              "default": "standard",
+              "values": [
+                "standard",
+                "live"
+              ],
+              "js_live": null,
+              "php_live": "cloro-google-ai-overview-live"
+            }
+          }
         },
         "firecrawl": {
           "js": null,
@@ -709,6 +789,30 @@
           "js": null,
           "php": "laravel-ai-librarium-firecrawl",
           "env": "FIRECRAWL_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "bing-ai-mode",
+      "name": "Bing AI Mode",
+      "kind": "engine",
+      "observation": "surface",
+      "collectors": {
+        "cloro": {
+          "js": null,
+          "php": "cloro-bing-ai-mode",
+          "env": "CLORO_API_KEY",
+          "options": {
+            "priority": {
+              "default": "standard",
+              "values": [
+                "standard",
+                "live"
+              ],
+              "js_live": null,
+              "php_live": "cloro-bing-ai-mode-live"
+            }
+          }
         }
       }
     }

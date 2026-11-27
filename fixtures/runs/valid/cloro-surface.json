@@ -1,0 +1,48 @@
+{
+  "spec": "librarium.run/1",
+  "id": "run_01JDC1R0B1NGA1M0DE00000AAA",
+  "question": "Which privacy-first analytics tools work for an EU SaaS?",
+  "depth": "quick",
+  "status": "done",
+  "created_at": "2026-11-26T18:04:11Z",
+  "finished_at": "2026-11-26T18:04:40Z",
+  "cost": {
+    "estimated": null,
+    "reported": null,
+    "complete": false,
+    "max": null
+  },
+  "results": [
+    {
+      "source": "bing-ai-mode",
+      "status": "done",
+      "observation": "surface",
+      "answer": "## Options\nPlausible and Fathom are EU-friendly.",
+      "citations": [
+        {
+          "url": "https://plausible.io/privacy-focused-web-analytics",
+          "title": "Privacy-focused web analytics"
+        },
+        {
+          "url": "https://usefathom.com/",
+          "title": "Fathom Analytics"
+        }
+      ],
+      "cost": {
+        "estimated": null,
+        "reported": null
+      },
+      "started_at": "2026-11-26T18:04:12Z",
+      "duration_ms": 28000,
+      "provenance": {
+        "provider": "bing-ai-mode",
+        "variant": "surface",
+        "model": null,
+        "collector": "cloro"
+      },
+      "error": null
+    }
+  ],
+  "skipped": [],
+  "notices": []
+}
