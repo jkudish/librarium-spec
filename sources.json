@@ -57,7 +57,7 @@
           ],
           "variants": {
             "dataforseo": {
-              "js": null,
+              "js": "dataforseo-llm-claude/live",
               "php": "dataforseo-llm-claude",
               "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD"
             }
@@ -154,7 +154,7 @@
           ],
           "variants": {
             "dataforseo": {
-              "js": null,
+              "js": "dataforseo-llm-gemini/live",
               "php": "dataforseo-llm-gemini",
               "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
               "requires": {
@@ -200,7 +200,7 @@
               "env": "SERPBASE_API_KEY"
             },
             "cloro": {
-              "js": null,
+              "js": "cloro-google/search",
               "php": "cloro-google-search",
               "env": "CLORO_API_KEY"
             }
@@ -222,7 +222,7 @@
               },
               "by_collector": {
                 "cloro": {
-                  "js": null,
+                  "js": "cloro-google/news",
                   "php": "cloro-google-news",
                   "env": "CLORO_API_KEY"
                 }
@@ -333,7 +333,7 @@
           ],
           "variants": {
             "dataforseo": {
-              "js": null,
+              "js": "dataforseo-llm-chatgpt/live",
               "php": "dataforseo-llm-chatgpt",
               "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD"
             }
@@ -486,7 +486,7 @@
           ],
           "variants": {
             "dataforseo": {
-              "js": null,
+              "js": "dataforseo-llm-perplexity/live",
               "php": "dataforseo-llm-perplexity",
               "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
               "requires": {
@@ -602,7 +602,7 @@
           "env": "SEARCHAPI_API_KEY"
         },
         "dataforseo": {
-          "js": null,
+          "js": "dataforseo-chatgpt/standard",
           "php": "dataforseo-chatgpt",
           "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
           "options": {
@@ -612,13 +612,13 @@
                 "standard",
                 "live"
               ],
-              "js_live": null,
+              "js_live": "dataforseo-chatgpt/live",
               "php_live": "dataforseo-chatgpt-live"
             }
           }
         },
         "cloro": {
-          "js": null,
+          "js": "cloro-chatgpt/standard",
           "php": "cloro-chatgpt",
           "env": "CLORO_API_KEY",
           "options": {
@@ -628,7 +628,7 @@
                 "standard",
                 "live"
               ],
-              "js_live": null,
+              "js_live": "cloro-chatgpt/live",
               "php_live": "cloro-chatgpt-live"
             }
           }
@@ -652,7 +652,7 @@
           "env": "SEARCHAPI_API_KEY"
         },
         "dataforseo": {
-          "js": null,
+          "js": "dataforseo-gemini/standard",
           "php": "dataforseo-gemini",
           "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
           "options": {
@@ -662,13 +662,13 @@
                 "standard",
                 "live"
               ],
-              "js_live": null,
+              "js_live": "dataforseo-gemini/live",
               "php_live": "dataforseo-gemini-live"
             }
           }
         },
         "cloro": {
-          "js": null,
+          "js": "cloro-gemini/standard",
           "php": "cloro-gemini",
           "env": "CLORO_API_KEY",
           "options": {
@@ -678,7 +678,7 @@
                 "standard",
                 "live"
               ],
-              "js_live": null,
+              "js_live": "cloro-gemini/live",
               "php_live": "cloro-gemini-live"
             }
           }
@@ -702,7 +702,7 @@
           "env": "SEARCHAPI_API_KEY"
         },
         "dataforseo": {
-          "js": null,
+          "js": "dataforseo-google-ai-mode/standard",
           "php": "dataforseo-google-ai-mode",
           "env": "DATAFORSEO_LOGIN+DATAFORSEO_PASSWORD",
           "options": {
@@ -712,13 +712,13 @@
                 "standard",
                 "live"
               ],
-              "js_live": null,
+              "js_live": "dataforseo-google-ai-mode/live",
               "php_live": "dataforseo-google-ai-mode-live"
             }
           }
         },
         "cloro": {
-          "js": null,
+          "js": "cloro-google-ai-mode/standard",
           "php": "cloro-google-ai-mode",
           "env": "CLORO_API_KEY",
           "options": {
@@ -728,7 +728,7 @@
                 "standard",
                 "live"
               ],
-              "js_live": null,
+              "js_live": "cloro-google-ai-mode/live",
               "php_live": "cloro-google-ai-mode-live"
             }
           }
@@ -752,7 +752,7 @@
           "env": "SEARCHAPI_API_KEY"
         },
         "cloro": {
-          "js": null,
+          "js": "cloro-google-ai-overview/standard",
           "php": "cloro-google-ai-overview",
           "env": "CLORO_API_KEY",
           "options": {
@@ -762,7 +762,7 @@
                 "standard",
                 "live"
               ],
-              "js_live": null,
+              "js_live": "cloro-google-ai-overview/live",
               "php_live": "cloro-google-ai-overview-live"
             }
           }
@@ -799,7 +799,7 @@
       "observation": "surface",
       "collectors": {
         "cloro": {
-          "js": null,
+          "js": "cloro-bing-ai-mode/standard",
           "php": "cloro-bing-ai-mode",
           "env": "CLORO_API_KEY",
           "options": {
@@ -809,7 +809,7 @@
                 "standard",
                 "live"
               ],
-              "js_live": null,
+              "js_live": "cloro-bing-ai-mode/live",
               "php_live": "cloro-bing-ai-mode-live"
             }
           }

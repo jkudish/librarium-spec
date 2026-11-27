@@ -1,7 +1,7 @@
 # Librarium simplified surface: specification
 
 Status: **approved** by Joey Kudish on 2026-10-12 (PlanMode epic #4954).
-Package version 1.2.0, distributed as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
+Package version 1.3.0, distributed as npm `librarium-spec` and Composer `jkudish/librarium-spec`.
 1.1.0 adds optional result `search_results` and the `collector` option on
 `openai`, `claude`, `perplexity` and `gemini` (approved by Joey Kudish on
 2026-11-03, PlanMode #5820).
@@ -9,6 +9,9 @@ Package version 1.2.0, distributed as npm `librarium-spec` and Composer `jkudish
 engine, explicit `js_live` / `php_live` ids on collector `priority` options,
 and the optional `by_collector` map on option variants (approved by Joey Kudish on 2026-11-26, Amp thread
 T-01a21a26-2bda-76af-a5f4-f870892c427e).
+1.3.0 fills in the `js` and `js_live` ids for the DataForSEO and Cloro
+collectors and the `collector: dataforseo` option, which Librarium JS now
+implements (same approval).
 Governs: Librarium JS 2.0 (`jkudish/librarium`, npm `librarium`), Laravel AI
 Librarium 1.0 (`jkudish/laravel-ai-librarium`), the Firecrawl adapter
 (`jkudish/laravel-ai-librarium-firecrawl`), this package, the CLI, MCP, docs,
@@ -69,7 +72,7 @@ are skipped by `deep` the same way.
 | `exa` | Exa search | Exa research | — |
 | `firecrawl` | Firecrawl search | — | `sources`, `limit` |
 | `gemini` | Gemini grounded | Gemini Deep Research | `quick: grounded \| chat` |
-| `google` | Google results via a SERP collector | — | `collector: searchapi \| serpapi \| serpbase \| cloro` (cloro: PHP), `vertical: web \| news` (news needs `serpbase` or `cloro`) |
+| `google` | Google results via a SERP collector | — | `collector: searchapi \| serpapi \| serpbase \| cloro`, `vertical: web \| news` (news needs `serpbase` or `cloro`) |
 | `grok` | Grok web search | — | `search: web \| x \| both` |
 | `jina` | Jina search | — | — |
 | `kagi` | Kagi FastGPT | — | — |
@@ -81,7 +84,7 @@ are skipped by `deep` the same way.
 | `valyu` | Valyu search | Valyu research | `mode` (default `standard`), `output` |
 | `you` | You.com answer | You.com research | `quick: answer \| research` |
 
-`collector: direct | dataforseo` (since 1.1, PHP only) is an option of
+`collector: direct | dataforseo` (since 1.1; JS since 1.3) is an option of
 `openai`, `claude`, `perplexity` (with `quick: sonar-pro`) and `gemini` (with
 `quick: grounded`). `dataforseo` asks the same provider's model through
 DataForSEO's LLM Responses API in Live mode, with web search on and DataForSEO
@@ -108,21 +111,22 @@ reject `collector: cloro` with `vertical: news`. Cloro's `google` collector
 makes one synchronous call for web and news alike; it has no `priority`.
 
 A `js` id becomes non-null only in the release that ships its JS
-implementation, because released JS resolves every catalog id it reads and
-fails on one it cannot bind. PHP treats a `php` id it has no binding for as
-unavailable: an engine skips with `no_collector`, and a selected source option
-is a validation error.
+implementation, because JS releases before the one paired with 1.3 resolve
+every catalog id they read and fail on one they cannot bind. From that
+release on, JS treats a `js` id it has no binding for the way PHP treats an
+unbound `php` id: as unavailable. An engine skips with `no_collector`, and a
+selected source option is a validation error.
 
 ### Engines
 
 | Engine | Collectors |
 | --- | --- |
-| `chatgpt` | searchapi, dataforseo (PHP), cloro (PHP), firecrawl (PHP adapter) |
-| `gemini-app` | searchapi, dataforseo (PHP), cloro (PHP), firecrawl (PHP adapter) |
-| `google-ai-mode` | searchapi, dataforseo (PHP), cloro (PHP), firecrawl (PHP adapter) |
-| `google-ai-overview` | searchapi, cloro (PHP), firecrawl (PHP adapter) |
+| `chatgpt` | searchapi, dataforseo, cloro, firecrawl (PHP adapter) |
+| `gemini-app` | searchapi, dataforseo, cloro, firecrawl (PHP adapter) |
+| `google-ai-mode` | searchapi, dataforseo, cloro, firecrawl (PHP adapter) |
+| `google-ai-overview` | searchapi, cloro, firecrawl (PHP adapter) |
 | `copilot` | searchapi, firecrawl (PHP adapter) |
-| `bing-ai-mode` | cloro (PHP) |
+| `bing-ai-mode` | cloro |
 
 The collector is configuration (`engines.collector`, per-engine override), not
 part of the name. DataForSEO's and Cloro's standard/live task priority is a
